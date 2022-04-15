@@ -21,7 +21,7 @@ publickey=$(printf '%s' "$privatekey" | wg pubkey)
 presharedkey=$(wg genpsk)
 
 echo 'Adding peer to MT...'
-ssh $mtuser@$mtip -p $mtsshport "/interface/wireguard/peers/add interface=$interface preshared-key=$presharedkey comment=$username allowed-address=$address public-key=$publickey persistent-keepalive=$persistentkeepalive"
+ssh $mtuser@$mtip -p $mtsshport "/interface/wireguard/peers/add interface=$interface preshared-key=\"$presharedkey\" comment=$username allowed-address=$address public-key=\"$publickey\" persistent-keepalive=$persistentkeepalive"
 
 echo 'Generating config...'
 conf="[Interface]
